@@ -89,7 +89,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd blog-app
-  git clone https://github.com/Jaymelfah/tracker-budget.git
+  git clone https://github.com/kaizipaul/tracker-budget.git
 ```
 
 ### Install
