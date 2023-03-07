@@ -1,27 +1,15 @@
-<%= form_with(model: category) do |form| %>
-  <% if category.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
-
-      <ul>
-        <% category.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with model: @category do |form| %>
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+   <%= form.text_field :name, placeholder: 'Category name', required: true %>
+  </div>
+  <div>
+    <%= form.label :icon, 'Select Icon:' %>
+    <%= form.select :icon, [['Investment', 'earning.png'], ['Health', 'hospital-building.png'],
+    ['Shopping', 'shopping-bag.png'], ['Sports', 'sports.png'], ['Movies', 'popcorn.png'], ['Travel', 'transportation.png'],
+    ['Others', 'more.png']], placeholder: 'Icon' %>
   </div>
 
   <div>
-    <%= form.label :icon, style: "display: block" %>
-    <%= form.text_field :icon %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Save" %>
   </div>
 <% end %>
