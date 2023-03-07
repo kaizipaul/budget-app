@@ -1,63 +1,37 @@
 class ExpendituresController < ApplicationController
-  before_action :set_expenditure, only: %i[show edit update destroy]
+  before_action :set_expenditure, only: %i[show destroy]
 
   # GET /expenditures or /expenditures.json
   def index
-    @expenditures = Expenditure.all
+    @expenditures = Expenditure.all.order(created_at: :desc)
   end
 
-  # GET /expenditures/1 or /expenditures/1.json
   def show; end
 
-  # GET /expenditures/new
   def new
     @expenditure = Expenditure.new
   end
 
-  # GET /expenditures/1/edit
-  def edit; end
-
-  # POST /expenditures or /expenditures.json
   def create
     @expenditure = Expenditure.new(expenditure_params)
-
-    respond_to do |format|
-      if @expenditure.save
-        format.html { redirect_to expenditure_url(@expenditure), notice: 'Expenditure was successfully created.' }
-        format.json { render :show, status: :created, location: @expenditure }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @expenditure.errors, status: :unprocessable_entity }
-      end
+    @category.author_id = current_user.id
+    if @category.save
+      flash[:notice] = 'Category was successfully created'
+      redirect_to categories_path
+    else
+      flash[:notice] = 'Could not create category successfully'
+      render :new
     end
   end
 
-  # PATCH/PUT /expenditures/1 or /expenditures/1.json
-  def update
-    respond_to do |format|
-      if @expenditure.update(expenditure_params)
-        format.html { redirect_to expenditure_url(@expenditure), notice: 'Expenditure was successfully updated.' }
-        format.json { render :show, status: :ok, location: @expenditure }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @expenditure.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /expenditures/1 or /expenditures/1.json
   def destroy
     @expenditure.destroy
-
-    respond_to do |format|
-      format.html { redirect_to expenditures_url, notice: 'Expenditure was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = 'The category was successfully deleted'
+    redirect_to categories_path
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_expenditure
     @expenditure = Expenditure.find(params[:id])
   end
