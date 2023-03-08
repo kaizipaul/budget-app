@@ -1,15 +1,17 @@
-<div>
-  <div>
-    <h1>TheBudgetTracker</h1>
+<div class="splash h-screen text-white flex items-center flex-col pt-48 relative">
+  <div class="flex flex-col gap-8 items-center">
+    <h1 class="text-3xl">TheBudgetTracker</h1>
   </div>
   <% if user_signed_in? %>
-    <p>Welcome <%= current_user.name %></p>
-    <button>
+    <p class="absolute top-4 right-4">Welcome <%= current_user.name %></p>
+    <div class="flex gap-6 mt-12">
+    <button class="btn p-4 rounded-lg">
       <%= link_to 'Categories', categories_path %>
     </button>
-    <%= button_to 'Log Out', destroy_user_session_path, method: :delete %>
+    <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: "logout p-4 rounded-lg" %>
+    </div>
   <% else %>
-    <%= link_to 'Log In', new_user_session_path %>
-    <%= link_to 'Sign up', new_user_registration_path %>
+    <%= link_to 'Log In', new_user_session_path, class: "border border-solid rounded-lg p-2 mb-4" %>
+    <%= link_to 'Sign up', new_user_registration_path, class: "border border-solid rounded-lg p-2 mb-4" %>
   <% end %>
 </div>
