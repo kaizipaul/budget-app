@@ -4,10 +4,10 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = if current_user
-      Category.where(author: current_user).order(created_at: :desc)
-    else
-      Category.all.order(created_at: :desc)
-    end
+                    Category.where(author: current_user).order(created_at: :desc)
+                  else
+                    Category.all.order(created_at: :desc)
+                  end
   end
 
   def show; end
