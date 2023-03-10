@@ -1,20 +1,28 @@
-<div class="flex mt-8 items-center flex-col w-full cont">
-  <div class="flex flex-col gap-4 w-full">
+<div class="flex mt-8 mb-8 items-center flex-col w-full">
+  <div class="flex flex-col gap-4 w-full m-4">
+  <% if @categories.empty? %>
+    <h3 class="text-center text-[2.5rem] font-bold text-zinc-500">Get Started</h3>
+    <span class="text-center text-zinc-500">Add your first budget by clicking on the button below
+    </span>
+    
+  <% else %>
     <% @categories.each do |category| %>
-      <%= link_to category_path(category.id) do %>
-        <div>
+      <%= link_to category_path(category.id.to_s) do %>
+        <div class="flex items-center justify-between bg-white px-6 h-28 mx-4 lg:mx-24 rounded-md">
           <div style="width: 15%">
             <%= image_tag category.icon, alt: 'icon', class: "img" %>
-          <div>
-            <p><%= category.name %></p>
-            <p><%= category.created_at.strftime('%d %B, %Y') %></p>
           </div>
-          <p class="ml-9 text">$<%= category.total %></p>
+          <div class="flex flex-col align-start gap-2 text-zinc-500">
+            <p class="text-[1.5rem]"><%= category.name %></p>
+            <p class="text-xs"><%= category.created_at.strftime('%d %B, %Y') %></p>
+          </div>
+          <p class="text-zinc-900 text-[1.5rem]">$<%= category.total %></p>
         </div>
       <% end %>
     <% end %>
+  <% end %>
   </div>
-  <button class="btn absolute bottom-0 w-full p-6 text-white ">
-  <%= link_to 'Add New Category', new_category_path, class: "border-white border border-solid p-4 w-full pl-20 pr-20" %>
-</button>
 </div>
+<button class="btn backdrop-blur-md fixed bottom-0 w-full p-6 text-white z-10">
+  <%= link_to '<i class="fa-solid fa-circle-plus"></i> Add New Category'.html_safe, new_category_path, class: "border-white border border-solid rounded-md p-4 w-full pl-20 pr-20" %>
+</button>

@@ -1,13 +1,13 @@
-<div class="w-full mt-6 bg-white px-4">
+<div class="flex flex-col content-center bg-white rounded-md mx-[7rem] my-[1.5rem] px-4 py-10 md:mx-[14rem] lg:mx-[28rem]">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field mt-2">
-    <%= f.text_field :name, autofocus: true, placeholder: 'Name', autocomplete: "name", class: "w-full forms" %>  
+    <%= f.text_field :name, autofocus: true, placeholder: 'name', autocomplete: "name", class: "w-full p-4 forms" %>  
   </div>
 
   <div class="field mt-2">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: "w-full forms" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'email', class: "w-full p-4 forms" %>
   </div>
 
   <div class="field mt-2">
@@ -15,15 +15,17 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-     <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', class: "w-full forms" %>
+     <%= f.password_field :password, autocomplete: "new-password", placeholder: 'password', class: "w-full p-4 forms" %>
   </div>
 
   <div class="field mt-2">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Password Confirmation', class: "w-full forms" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'confirm password', class: "w-full p-4 forms" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions py-2">
+    <%= f.submit "SIGN UP", class: "btn p-3 rounded-md text-white tracking-wider" %>
   </div>
 <% end %>
+<div class="p-2">
 <%= render "devise/shared/links" %>
+</div>

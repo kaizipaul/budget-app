@@ -1,6 +1,10 @@
-<nav class="splash w-full flex gap-24 text-white p-6 text-xl">
-  <p><%= link_to '<i class="fa-solid fa-bars"></i>'.html_safe, root_path %></p>
-  <p class="mr-4"><%= render partial: 'layouts/title' %></p>
-  <%= button_to '<i class="fa-solid fa-right-from-bracket"></i>'.html_safe, destroy_user_session_path, method: :delete %>
+<nav class="splash w-full flex items-center justify-between text-white p-4 text-xl">
+  <p><%= link_to '<i class="fa-solid fa-bars"></i>'.html_safe, unauthenticated_root_path%></p>
+  <p class="text-[1.5rem] text-center"><%= render partial: 'layouts/title' %></p>
 
+  <% if user_signed_in? %>
+  <%= button_to '<i class="fa-solid fa-arrow-right-from-bracket"></i> LOG OUT'.html_safe, destroy_user_session_path, method: :delete, class: "bg-red-800 p-2 rounded-md text-[0.9rem]" %>
+  <% else %>
+  <p></p>
+  <% end %>
 </nav>

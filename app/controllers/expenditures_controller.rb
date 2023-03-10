@@ -10,24 +10,29 @@ class ExpendituresController < ApplicationController
 
   def new
     @expenditure = Expenditure.new
+    @category = Category.find(params[:category_id])
   end
 
   def create
+    @category = Category.find(params[:category_id])
     @expenditure = Expenditure.new(expenditure_params)
-    @category.author_id = current_user.id
-    if @category.save
-      flash[:notice] = 'Category was successfully created'
-      redirect_to categories_path
+    @expenditure.author_id = current_user.id
+    if @expenditure.save
+      category_expenditure = CategoryExpenditure.new(category_id: params[:category_id], expenditure_id: @expenditure.id)
+      category_expenditure.save
+      redirect_to category_path(@category.id)
+      flash[:notice] = 'Expenditure added'
     else
-      flash[:notice] = 'Could not create category successfully'
       render :new
+      flash[:notice] = 'Error adding expenditure'
     end
   end
 
   def destroy
+    @category = Category.find(params[:category_id])
     @expenditure.destroy
-    flash[:notice] = 'The category was successfully deleted'
-    redirect_to categories_path
+    flash[:notice] = 'Expenditure deleted'
+    redirect_to category_path(@category.id)
   end
 
   private

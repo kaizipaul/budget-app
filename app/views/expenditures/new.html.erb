@@ -1,9 +1,19 @@
-<h1>New expenditure</h1>
-
-<%= render "form", expenditure: @expenditure %>
+<div class="flex flex-col content-center bg-white rounded-md mx-[7rem] my-[1.5rem] px-4 py-10 md:mx-[14rem] lg:mx-[28rem]">
+<%= form_with model: [@category, @expenditure] do |form| %>
+  <div class="py-2">
+   <%= form.text_field :name, placeholder: 'Name', required: true, class: "w-full forms p-4" %>
+  </div>
+   <div class="py-2">
+   <%= form.number_field :amount, placeholder: 'Amount (in $)', type: 'decimal', required: true, class: "w-full forms p-4" %>
+  </div>
+  <div class="flex flex-col items-center mt-6">
+    <%= form.submit "Add Expenditure", class: "btn p-3 rounded-md text-white" %>
+  </div>
+<% end %>
+</div>
 
 <br>
 
 <div class="absolute bottom-0 flex flex-col gap-6 w-full">
-    <%= link_to '<i class="fa-solid fa-circle-chevron-left"></i>'.html_safe, category_path(@category.id), class: "text-3xl back"%>
+    <%= link_to '<i class="fa-solid fa-circle-chevron-left"></i> Category Page'.html_safe, category_path(@category.id), class: "text-[1.5rem] back"%>
 </div>
