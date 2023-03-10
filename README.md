@@ -56,7 +56,7 @@ This is a [live](https://thebudgettracker.onrender.com/) demo of the mobile app
 
 
 ### Video Demo
-This is a [video](https://www.loom.com/share/c66bc3e6c1964074b02a8e47135ff502) demonstration of the app
+This is a [video](https://www.loom.com/share/146e532d27804ddb9c7ad5c7a313da4b) demonstration of the app
 
 <!-- Features -->
 
