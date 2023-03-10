@@ -52,7 +52,7 @@
 
 
 ### Live Demo
-This is a [live](https://budget-application-39ba.onrender.com) demo of the mobile app
+This is a [live](https://thebudgettracker.onrender.com/) demo of the mobile app
 
 
 ### Video Demo
